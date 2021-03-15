@@ -4,6 +4,7 @@ const app = getApp()
 
 Page({
   data: {
+    tt: '',
     motto: 'Ha Ha',
     userInfo: {},
     hasUserInfo: false,
@@ -12,6 +13,31 @@ Page({
     canIUseOpenData: false
     // canIUseOpenData: wx.canIUse('open-data.type.userAvatarUrl') && wx.canIUse('open-data.type.userNickName') // 如需尝试获取用户信息可改为false
   },
+  
+  //数据交互
+  bindtest: function(options) {
+    var that = this;
+    wx.request({
+      url: 'http://localhost:8080/aaa/Servlet', //本地服务器地址
+      data: { //data中的参数值就是传递给后台的数据
+        transInfo: '呐，这是小程序端给后台的数据'
+      },
+      method: 'GET',
+      header: {
+        'content-type': 'application/json' //默认值
+      },
+      success: function(res) { //res就是接收后台返回的数据
+        that.setData({
+          tt: res.data
+        })
+        console.log(res.data);
+      },
+      fail: function(res) {
+        console.log("失败");
+      }
+    })
+  },
+
   // 事件处理函数
   bindViewTap() {
     wx.navigateTo({

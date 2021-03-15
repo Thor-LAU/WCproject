@@ -20,4 +20,8 @@
   <view class="usermotto">
     <text class="user-motto">{{motto}}</text>
   </view>
+  <view>
+    <button bindtap='bindtest'>数据交互</button>
+    <text>接收到后台的数据：{{tt}}</text>
+</view>
 </view>
